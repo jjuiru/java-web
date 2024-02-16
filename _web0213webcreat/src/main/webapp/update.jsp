@@ -8,7 +8,7 @@
      request.setCharacterEncoding("utf-8");
  
      // 전달받은 값 읽기
-     int    num     = Integer.parseInt(request.getParameter("num"));
+     int num = Integer.parseInt(request.getParameter("num"));
      String writer  = request.getParameter("writer" );
      String title   = request.getParameter("title"  );
      String content = request.getParameter("content");

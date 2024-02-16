@@ -2,8 +2,6 @@ package design.pattern.carPactory;
 
 import java.util.Scanner;
 
-import tirePactoty.CarTire;
-
 public class Ex {
 
 	public static void main(String[] args) {

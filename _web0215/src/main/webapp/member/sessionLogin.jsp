@@ -31,10 +31,8 @@
     }catch(Exception e) {
         e.printStackTrace();
     }
-    // 셀렉트를 호출해서 값을 가져와 객체에 넣으면 
     if (login) {
     	session.setAttribute("MEMBERID", id);
-    	//세션에 객체를 넣을 수 있다.
     	
 //         response.sendRedirect("sessionLoginForm.jsp"); 
 //    response.sendRedirect("loginCK.jsp");   // 로그인 메인 화면으로 돌아감 
@@ -48,7 +46,7 @@
 //   history.back();
     //history.go(-1);
     
-    location.href = "../list.jsp";
+    location.href = "list.jsp";
 </script>
 
  <%  //response.sendRedirect("../list.jsp"); html에 붙어서 나오기 때문에 script와 상관없이 이동 %>
