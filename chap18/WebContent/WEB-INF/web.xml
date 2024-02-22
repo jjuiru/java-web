@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+		http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<!-- ControllerUsingURI 서블릿 설정 -->
+	<servlet>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
+		<init-param>
+			<!-- configFile 초기화 매개변수 설정 -->
+			<param-name>configFile</param-name>
+			<!-- configFile 초기화 매개변수 값 설정 -->
+			<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
+		</init-param>
+		<!-- 서블릿 초기화 시 로드 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- ControllerUsingURI 서블릿 매핑 -->
+	<servlet-mapping>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<!-- URL 패턴 설정 -->
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- ControllerUsingFile 서블릿 설정 -->
+	<servlet>
+		<servlet-name>ControllerUsingFile</servlet-name>
+		<servlet-class>mvc.controller.ControllerUsingFile</servlet-class>
+		<init-param>
+			<!-- configFile 초기화 매개변수 설정 -->
+			<param-name>configFile</param-name>
+			<!-- configFile 초기화 매개변수 값 설정 -->
+			<param-value>/WEB-INF/commandHandler.properties</param-value>
+		</init-param>
+		<!-- 서블릿 초기화 시 로드 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- ControllerUsingFile 서블릿 매핑 -->
+	<servlet-mapping>
+		<servlet-name>ControllerUsingFile</servlet-name>
+		<!-- URL 패턴 설정 -->
+		<url-pattern>/controllerUsingFile</url-pattern>
+	</servlet-mapping>
+
+	<!-- SimpleController 서블릿 설정 -->
+	<servlet>
+		<servlet-name>SimpleController</servlet-name>
+		<servlet-class>mvc.simple.SimpleController</servlet-class>
+	</servlet>
+
+	<!-- SimpleController 서블릿 매핑 -->
+	<servlet-mapping>
+		<servlet-name>SimpleController</servlet-name>
+		<!-- URL 패턴 설정 -->
+		<url-pattern>/simple</url-pattern>
+	</servlet-mapping>
+
+</web-app>
