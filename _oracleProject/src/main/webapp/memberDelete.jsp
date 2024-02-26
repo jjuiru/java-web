@@ -7,11 +7,12 @@
      <% request.setCharacterEncoding("utf-8");
 //post 방식일때 한글이 깨질까봐
 //String driver="oracle.jdbc.driver.OracleDriver";
+Class.forName("oracle.jdbc.driver.OracleDriver");
 String url="jdbc:oracle:thin:@localhost:1521:xe";
 Connection conn = DriverManager.getConnection(url, "scott", "tiger");
 String sql = "delete from member where memberno=?";
 PreparedStatement pstmt = conn.prepareStatement(sql);
-pstmt.setString(1, request.getParameter("membrno"));
+pstmt.setString(1, request.getParameter("memberno"));
 
 
 int result = pstmt.executeUpdate();

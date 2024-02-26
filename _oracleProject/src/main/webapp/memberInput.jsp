@@ -18,7 +18,9 @@
  pstmt.setString(1, id);
  pstmt.setString(2, email);
  pstmt.setString(3, name);
-
+ 
+ int result = pstmt.executeUpdate();
+ 
  response.sendRedirect("list.jsp");
  %>   
     

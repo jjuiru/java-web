@@ -7,10 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>기업형 웹 페이지</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 <script src="https://kit.fontawesome.com/c47106c6a7.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../css/style.css">
 <script defer src="js/ie.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<header>
@@ -53,23 +57,28 @@
 %>    </div>
 	</header>
 	<figure style="background-color: #FFFFFF;">
+	
+		<article style="margin-right: 800px; margin-left: 800px;">
+		
 		<form action="member_join.jsp" method="post">
-			<table>
-				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="id"></td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><input type="text" name="pw"></td>
-				</tr>
-				<tr>
-					<td>이름</td>
-					<td><input type="text" name="name"></td>
-				</tr>
-			</table>
-			<button type="submit" class="btn btn-dark">등록</button>
+		
+		
+		<div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">아이디</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id" name="id">
+       </div>
+       
+       		<div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">이메일</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="email" name="email">
+       </div>
+       
+       		<div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">이름</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name" name="name">
+       </div>
 		</form>
+		</article>
 	</figure>
 	<footer>
 		<div class="inner">
@@ -92,6 +101,7 @@
 			</div>
 		</div>
 		<!-- 기업정보 -->
+	</main>
 	</footer>
 
 </body>

@@ -4,9 +4,9 @@
 <%
 // Cookies cookies = new Cookies(request);여기서는 꼭 객체정보를 사용하지 않아도 Cookies를 사용할 수 있다.
 //static 메소드 사용 but 쿠키 정보를 가져오기 위해서는 사용해야한다.
-String remember = request.getParameter("remember");
+String check = request.getParameter("check");
 String email = request.getParameter("email");
-if (remember != null && remember.equals("on")) {
+if (check != null && check.equals("on")) {
 	//체크 파일이 체크가 되면 값이 remember값이 on으로 넘어온다. 
 	// 이메일을 작성하지 않았거나, 체크박스에 체크를 하지 않았다면 쿠키를 지우고 둘다 참이라면 쿠키를 생성해서 저장한다.
 	response.addCookie(Cookies.createCookie("email", email, "/", 60 * 60));

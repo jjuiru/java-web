@@ -10,6 +10,12 @@ public Member(String id, String email, String name) {
 	this.email = email;
 	this.name = name;
 }
+
+public Member(String id, String email) {
+	super();
+	this.id = id;
+	this.email = email;
+}
 public String getId() {
 	return id;
 }

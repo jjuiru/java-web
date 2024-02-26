@@ -1,89 +1,107 @@
+<%@page import="util.Cookies"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+	pageEncoding="UTF-8"%>
+<%
+ Cookies cookies = new Cookies(request);
+//static 메소드 사용 but 쿠키 정보를 가져오기 위해서는 사용해야한다.
+%>
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>모하지갤러리</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<script src="https://kit.fontawesome.com/c47106c6a7.js"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../css/style.css">
-<script defer src="js/ie.js"></script>
+<script src="../assets/js/color-modes.js"></script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Hugo 0.115.4">
+<title>Signin Template · Bootstrap v5.3</title>
+
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="../css/sign-in.css" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<div class="inner">
-			<!-- 메인화면을 나타내주는 가장 큰 메뉴 -->
-			<h1>
-				<a href="../mainPage.jsp">MOHAJIGALLERY</a>
-			</h1>
-			<ul id="gnb">
-				<!-- gnb 메뉴바 >기능이 있는 작은 메뉴들 -->
-				<li><a href="../mainpage/intro.jsp">INTRO</a></li>
-				<li><a href="../mainpage/gallery.jsp">GALLERY</a></li>
-				<li><a href="../mainpage/youtube.jsp">YOUTUBE</a></li>
-				<li><a href="../member/list.jsp">COMMUNITY</a></li>
-				<li><a href="../mainpage/location.jsp">LOCATION</a></li>
-			</ul>
-			<ul class="util">
-<%
-    if ((String)session.getAttribute("userId") != null)
-    	// Member member = (Member)session.getAttribute("member");
-    	//if (member.getId() != null) 
-    	{          
-        // 로그인 상태일 때의 출력 
-%>			
-				<li><a href="../minipage/help.jsp">Help</a></li>
-				<li><a href="logout.jsp">Logout</a></li>
-				<li><a href="../minipage/mypage.jsp">Mypage</a></li>
-			</ul>
-<%  
-    } else {                       
-        // 로그인되지 않은 상태일 때의 출력           				
-%>
-                <li><a href="../minipage/help.jsp">Help</a></li>
-				<li><a href="login_main.jsp">Login</a></li>
-				<li><a href="../minipage/join.jsp">join</a></li>
-			</ul>		
-		<!-- 메뉴의 상단영역 -->
+<div style="margin-top: 200px;">
+	<main class="form-signin w-100 m-auto">
 		<%
-    }
-%>    </div>
-	</header>
- <figure style="background-color: #FFFFFF;">
+		if ((String) session.getAttribute("userId") != null)
+		// Member member = (Member)session.getAttribute("member");
+		//if (member.getId() != null) 
+		{
+			// 로그인 상태일 때의 출력
+		%>
+		<form action="logout.jsp" method="post">
+			<%=(String) session.getAttribute("userName")%>님 로그인 
+			<input style="margin-bottom: 10px;" type="submit" value="로그아웃"> 
+			<input style="margin-bottom: 10px;" type="button" value="회원정보 수정" onclick="location.href='member_update_form.jsp';">
+		</form>
+		<%
+		} else {
+		// 로그인되지 않은 상태일 때의 출력
+		%>
+		<form action="login.jsp" method="post">
+			<h1 class="h3 mb-3 fw-normal">로그인</h1>
 
-<%
-    if ((String)session.getAttribute("userId") != null)
-    	// Member member = (Member)session.getAttribute("member");
-    	//if (member.getId() != null) 
-    	{          
-        // 로그인 상태일 때의 출력 
-%>
-        <form action="logout.jsp" method="post">  
-            <%=(String)session.getAttribute("userName")%>님 로그인
-            <input type="submit" value="로그아웃">
-            <input type="button" value="회원정보 수정" 
-                   onclick="window.open('member_update_form.jsp', 'popup', 
-                                        'width=400, height=200')">
-        </form>
-<%  
-    } else {                       
-        // 로그인되지 않은 상태일 때의 출력
-%>
-        <form action="login.jsp" method="post"> 
-            아이디:   <input type="text"     name="id">&nbsp;&nbsp;
-            이메일: <input type="text" name="pw">
-            <input type="submit" value="로그인">
-            <input type="button" value="회원가입" 
-                   onclick="window.open('member_join_form.jsp', 'popup', 
-                                        'width=400, height=200')">
-        </form>
-<%
-    }
-%>
-</figure>
+			<%
+			if (cookies.exists("email")) {
+			%>
 
+			<div class="form-floating">
+				<input style="margin-bottom: 10px; border-radius: 10px;" type="text" class="form-control" id="id" name="id"
+					placeholder="id" value="<%=cookies.getValue("id")%>"> 
+					<label for="id">아이디</label>
+			</div>
+
+			<div class="form-floating">
+				<input style=" border-radius: 10px;" type="email" class="form-control" id="email" name="email"
+					value="<%=cookies.getValue("email")%>" placeholder="email">
+				<label for="email">이메일</label>
+			</div>
+			<%
+			} else {
+			%>
+			<div class="form-floating">
+				<input style="margin-bottom: 10px; border-radius: 10px;" type="text" class="form-control" id="id" name="id" placeholder="id"> 
+				<label for="id">아이디</label>
+			</div>
+
+			<div class="form-floating">
+				<input style=" border-radius: 10px;" type="email" class="form-control" id="email" name="email"
+					placeholder="email">
+				<label for="email">이메일</label>
+			</div>
+
+			<%
+			}
+			%>
+
+			<div class="form-check text-start my-3">
+				<input class="form-check-input" type="checkbox"
+					id="check" name="check"> <label class="form-check-label"
+					for="check"> 아이디를 저장합니다. </label>
+			</div>
+			<div>
+			<button style="margin-bottom: 10px; border-radius: 10px;" class="btn btn-dark w-100 py-2" type="submit"
+				onclick="location.href='login.jsp';">Sign in</button>
+				</div>
+		</form>
+			<div>
+			<button style= "border-radius: 10px;" class="btn btn-dark w-100 py-2"
+				onclick="location.href='member_join_form.jsp';">join</button>
+				</div>
+			<p class="mt-5 mb-3 text-body-secondary">&copy; 2024–2027</p>
+			<%
+			}
+			%>
+	</main>
+</div>
+
+	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

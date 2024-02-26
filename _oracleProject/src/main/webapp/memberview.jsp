@@ -33,7 +33,7 @@ ResultSet rs = pstmt.executeQuery();
 			String email = rs.getString("email");
 			String name = rs.getString("name");
 		%>
-		<form action="memberUpdate.jsp" method="post">
+		<form id="myForm" method="post">
 			<div class="mb-3">
 				<label for="membernoview" class="form-label">아이디</label> <input
 					type="text" class="form-control" id="membernoview" name="memberno"
@@ -55,17 +55,26 @@ ResultSet rs = pstmt.executeQuery();
 					type="text" class="form-control" id="nameview" name="name"
 					value="<%=name%>">
 			</div>
-			<button type="submit" class="btn btn-secondary">수정</button>
-			<button type="submit" class="btn btn-secondary">삭제</button>
+			<button type="submit" class="btn btn-secondary"
+				onclick="setAction('memberUpdate.jsp')">수정</button>
+			<button type="submit" class="btn btn-secondary"
+				onclick="setAction('memberDelete.jsp')">삭제</button>
 		</form>
 		<%
 		}
 		%>
+		<script>
+			function setAction(action) {
+				document.getElementById("myForm").action = action;
+			}
+		</script>
 
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous">
+			
+		</script>
 	</div>
 </body>
 </html>

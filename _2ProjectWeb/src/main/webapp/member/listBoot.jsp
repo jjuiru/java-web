@@ -10,7 +10,7 @@
  	response.sendRedirect("sessionLoginForm.jsp");
 }
  boolean login = memberId == null ? false : true;
- BoardDao dao = BoardDao.getInstanec();
+ BoardDao dao = BoardDao.getInstance();
  List<Board> list = dao.selectList(); // selectList() 호출해보기
  
 

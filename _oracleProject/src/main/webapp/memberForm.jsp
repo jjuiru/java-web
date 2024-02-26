@@ -15,7 +15,6 @@
 	<div class="container" style="padding-top: 50px">
 		<form action="memberInput.jsp" method="post">
 			<div class="mb-3">
-			<% request.setCharacterEncoding("utf-8"); %>
 				<label for="idInput" class="form-label">아이디</label> <input
 					type="text" class="form-control" id="idInput" name="id"  placeholder="id">
 			</div>
