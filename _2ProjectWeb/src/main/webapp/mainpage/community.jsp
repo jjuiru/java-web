@@ -29,12 +29,30 @@
 			</ul>
 
 			<ul class="util">
+<%
+    if ((String)session.getAttribute("userId") != null)
+    	// Member member = (Member)session.getAttribute("member");
+    	//if (member.getId() != null) 
+    	{          
+        // 로그인 상태일 때의 출력 
+%>			
+<li><a href="../minipage/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
 				<li><a href="help.jsp">Help</a></li>
-				<li><a href="../login/login_main.jsp">Login</a></li>
-				<li><a href="../login/member_join_form.jsp">join</a></li>
+				<li><a href="../login/logout.jsp">Logout</a></li>
 				<li><a href="mypage.jsp">Mypage</a></li>
 			</ul>
-		</div>
+<%  
+    } else {                       
+        // 로그인되지 않은 상태일 때의 출력           				
+%>
+                <li><a href="help.jsp">Help</a></li>
+				<li><a href="../login/login_main.jsp">Login</a></li>
+				<li><a href="../login/member_join_form.jsp">join</a></li>
+			</ul>		
+		<!-- 메뉴의 상단영역 -->
+		<%
+    }
+%> 	</div>
 		<!-- 메뉴의 상단영역 -->
 	</header>
 	<figure style="background-color: #FFFFFF;">

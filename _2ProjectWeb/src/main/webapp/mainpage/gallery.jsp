@@ -35,6 +35,7 @@
     	{          
         // 로그인 상태일 때의 출력 
 %>			
+<li><a href="../minipage/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
 				<li><a href="help.jsp">Help</a></li>
 				<li><a href="../login/logout.jsp">Logout</a></li>
 				<li><a href="mypage.jsp">Mypage</a></li>

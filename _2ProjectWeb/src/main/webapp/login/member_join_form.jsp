@@ -39,6 +39,7 @@
     	{          
         // 로그인 상태일 때의 출력 
 %>			
+<li><a href="../minipage/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
 				<li><a href="../minipage/help.jsp">Help</a></li>
 				<li><a href="logout.jsp">Logout</a></li>
 				<li><a href="../minipage/mypage.jsp">Mypage</a></li>
@@ -49,20 +50,16 @@
 %>
                 <li><a href="../minipage/help.jsp">Help</a></li>
 				<li><a href="login_main.jsp">Login</a></li>
-				<li><a href="../minipage/join.jsp">join</a></li>
+				<li><a href="member_join_form.jsp">join</a></li>
 			</ul>		
 		<!-- 메뉴의 상단영역 -->
 		<%
     }
 %>    </div>
 	</header>
-	<figure style="background-color: #FFFFFF;">
-	
-		<article style="margin-right: 800px; margin-left: 800px;">
+	<figure style="max-width: 100%; background-color: #FFFFFF; display: flex; flex-direction: column; align-items: center; margin-top: 5vw auto;">
 		
-		<form action="member_join.jsp" method="post">
-		
-		
+		<form action="member_join.jsp" method="post">		
 		<div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">아이디</label>
           <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id" name="id">
@@ -77,8 +74,11 @@
           <label for="exampleFormControlInput1" class="form-label">이름</label>
           <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name" name="name">
        </div>
+       <div>
+			<button style= "border-radius: 10px;" class="btn btn-dark w-100 py-2"
+				onclick="location.href='member_join_form.jsp';">입력</button>
+				</div>
 		</form>
-		</article>
 	</figure>
 	<footer>
 		<div class="inner">

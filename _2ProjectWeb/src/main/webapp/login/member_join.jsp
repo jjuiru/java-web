@@ -29,7 +29,7 @@
           
         } else {       
         	Member member1 = new Member(request.getParameter("id"),
-        			request.getParameter("pw"),
+        			request.getParameter("email"),
         			request.getParameter("name"));
             MemberTest.getInstance().insert(member1);
         // 새로운 회원정보를 DB에 추가하는 쿼리
