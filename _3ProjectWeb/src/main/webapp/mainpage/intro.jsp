@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>모하지유튜브</title>
+<title>모하지인트로</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <script src="https://kit.fontawesome.com/c47106c6a7.js"
 	crossorigin="anonymous"></script>
@@ -19,23 +19,39 @@
 			<h1>
 				<a href="../mainPage.jsp">MOHAJIGALLERY</a>
 			</h1>
-			<ul id="gnb">
+					<ul id="gnb">
 				<!-- gnb 메뉴바 >기능이 있는 작은 메뉴들 -->
-				<li><a href="../mainpage/intro.jsp">INTRO</a></li>
-				<li><a href="../mainpage/gallery.jsp">GALLERY</a></li>
-				<li><a href="../mainpage/youtube.jsp">YOUTUBE</a></li>
-				<li><a href="../mainpage/community.jsp">COMMUNITY</a></li>
-				<li><a href="../mainpage/location.jsp">LOCATION</a></li>
+				<li><a href="intro.jsp">INTRO</a></li>
+				<li><a href="gallery.jsp">GALLERY</a></li>
+				<li><a href="youtube.jsp">YOUTUBE</a></li>
+				<li><a href="../member/list.jsp">COMMUNITY</a></li>
+				<li><a href="location.jsp">LOCATION</a></li>
 			</ul>
-
 			<ul class="util">
-				<li><a href="../minipage/help.jsp">Help</a></li>
-				<li><a href="../login/login_main.jsp">Login</a></li>
-				<li><a href="../minipage/join.jsp">join</a></li>
-				<li><a href="../minipage/mypage.jsp">Mypage</a></li>
+<%
+    if ((String)session.getAttribute("userId") != null)
+    	// Member member = (Member)session.getAttribute("member");
+    	//if (member.getId() != null) 
+    	{          
+        // 로그인 상태일 때의 출력 
+%>			
+<li><a href="../minipage/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
+				<li><a href="help.jsp">Help</a></li>
+				<li><a href="../login/logout.jsp">Logout</a></li>
+				<li><a href="mypage.jsp">Mypage</a></li>
 			</ul>
-		</div>
+<%  
+    } else {                       
+        // 로그인되지 않은 상태일 때의 출력           				
+%>
+                <li><a href="help.jsp">Help</a></li>
+				<li><a href="../login/login_main.jsp">Login</a></li>
+				<li><a href="../login/member_join_form.jsp">join</a></li>
+			</ul>		
 		<!-- 메뉴의 상단영역 -->
+		<%
+    }
+%>      </div>
 	</header>
 	<figure style="background-color: #FFFFFF;">
 		<video src="img/visual.mp4" autoplay muted loop></video>
