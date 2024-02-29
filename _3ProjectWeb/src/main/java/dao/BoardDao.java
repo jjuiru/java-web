@@ -42,9 +42,8 @@ public class BoardDao { // 싱글턴 클래스
 	public ArrayList<Board> selectList() {
 		ArrayList<Board> list = new ArrayList<Board>();
 		// List는 인터페이스 타입으로 다형서을 사용하기 위해서 사용
-		String sql = "select d.num, m.id, d.title, d.content , d.regtime, d.hits, d.memberno\r\n"
-				+ "from member m, board d\r\n"
-				+ "where m.memberno=d.memberno";
+		String sql = "SELECT d.num, m.id, d.title, d.content, d.regtime, d.hits, d.memberno " +
+                "FROM member m JOIN board d ON m.memberno = d.memberno ORDER BY d.num";
 		PreparedStatement pstmt;
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -112,29 +111,55 @@ public class BoardDao { // 싱글턴 클래스
 	// ------------------------------------------
 
 	public int delete(int num) {
-		int result = 0;
-		try (PreparedStatement pstmt = conn.prepareStatement("delete from board where num=" + num);) {
-			result = pstmt.executeUpdate();
+	    int result = 0;
+	    String sql = "DELETE FROM board WHERE num=?";
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, num);
+	        result = pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return result;
+	}
+
+	
+	public Board selectId(String id) {
+		Board board1 = null;
+//		String sql = "select * from board where num=" + num;
+		String sql = "select memberno from member where id=?"; // Prepared전용
+		PreparedStatement pstmt;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id); // Prepared전용
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				board1 = new Board(rs.getInt("memberno"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return result;
+		return board1;
 	}
-
-	public int insert(Board board) {		
-//		String sql = "insert into board(title, content, regtime, hits, memberno) values (?,?,SYSDATE,0,?)";
-		String sql = "INSERT INTO board (title, content, regtime, hits, memberno) VALUES (?, ?, SYSDATE, 0, (SELECT m.memberno FROM member m WHERE m.id = ?));";
-		try (PreparedStatement pstmt = conn.prepareStatement(sql);) {
-			pstmt.setString(1, board.getTitle());
-			pstmt.setString(2, board.getContent());
-			pstmt.setString(3, board.getId());
-			return pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
+	
+	
+	public int insert(Board board, String id) {
+		   int memberNo = selectId(id).getMemberno();
+		    if (memberNo == 0) {
+		        System.out.println("Member not found for id: " + id);
+		        return 0; // 혹은 에러 처리
+		    }
+		    String sql = "INSERT INTO board (num, title, content, regtime, hits, memberno) VALUES (seq_board.nextval, ?,?, SYSDATE, 0, ?)";
+		    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		        pstmt.setString(1, board.getTitle());
+		        pstmt.setString(2, board.getContent());
+		        pstmt.setInt(3, memberNo);
+		        return pstmt.executeUpdate();
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return 0;
 		}
-		return 0;
-	}
 
 	public void update(Board board) {
 		String sql = "UPDATE board SET title=?, content=?, regtime=SYSDATE WHERE num=?";

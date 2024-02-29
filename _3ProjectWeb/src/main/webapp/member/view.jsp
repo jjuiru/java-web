@@ -82,8 +82,9 @@ window.onload = function() {
     	{          
         // 로그인 상태일 때의 출력 
 %>			
-				<li><a href="../minipage/help.jsp">Help</a></li>
-				<li><a href="logout.jsp">Logout</a></li>
+<li><a href="../minipage/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
+				<li><a href="../login/help.jsp">Help</a></li>
+				<li><a href="../login/logout.jsp">Logout</a></li>
 				<li><a href="../minipage/mypage.jsp">Mypage</a></li>
 			</ul>
 <%  
@@ -132,11 +133,17 @@ window.onload = function() {
     </tr>
   </tbody>
 </table>
-<input type="button" value="목록보기" onclick="location.href='list.jsp'">
-<input type="button" value="수정"
+
+<% if(id.equals(memberId)){%>
+
+<input type="button" value="목록보기" class="btn btn-dark" onclick="location.href='list.jsp'">
+<input type="button" class="btn btn-dark" value="수정"
        onclick="location.href='write.jsp?id=<%=id%>&num=<%=num%>'">
-<input type="button" value="삭제"
-       onclick="location.href='delete.jsp?id=<%=num%>'">
+<input type="button" class="btn btn-dark" value="삭제"
+       onclick="location.href='delete.jsp?num=<%=num%>'">
+   <%  }else{  %>
+   <input type="button" value="목록보기" class="btn btn-dark" onclick="location.href='list.jsp'">
+   <%  }%>
   </div> 
 <br>
 

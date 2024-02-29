@@ -1,3 +1,4 @@
+<%@page import="dto.Member"%>
 <%@page import="dto.Board"%>
 <%@page import="dao.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -34,14 +35,15 @@ if(memberId==null){
     }
 
     BoardDao dao = BoardDao.getInstance();
-    Board board = new Board(id, title, content);
+
+    Board board = new Board(title, content);
     // 1번 Board board = new Board(0,writer, title, content, "",0);
     // num오토, date
     // 2번 Board board= new Board(); 기본 생성자만 있을 경우
     // board.setTitle(title); getter, setter를 통해 사용
     // board.setTitle(writer);
     // board.setTitle(content);
-    dao.insert(board);
+    dao.insert(board, id);
     
     // 목록보기 화면으로 돌아감
     response.sendRedirect("list.jsp");

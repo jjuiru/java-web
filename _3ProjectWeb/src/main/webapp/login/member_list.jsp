@@ -6,16 +6,9 @@
     
     <%
  String memberId = (String)session.getAttribute("userId");
-    if(memberId==null){%>
-    	<script>
-    	window.onload = function() {
-    	    alert('로그인을 해주세요');   
-    	    location.href = "../login/login_main.jsp";
-    	};
-    	</script>
-    	<%}
+ boolean login = memberId == null ? false : true;
  MemberDao dao = MemberDao.getInstance();
- Member member = dao.select(memberId); // selectList() 호출해보기
+ List<Member> list = dao.selectList(); // selectList() 호출해보기
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,10 +19,9 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <script src="https://kit.fontawesome.com/c47106c6a7.js"
 	crossorigin="anonymous"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/style.css">
 <script defer src="js/ie.js"></script>
- 
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
 	<header>
@@ -73,39 +65,54 @@
 %>    </div>
 
 	</header>	
-	<figure style="max-width: 100%; background-color: #fff;display: flex; padding-top: 50px; flex-direction: column; align-items: center; margin-top: 5vw auto;">
-        <div><h1>account</h1></div>
-        <br>
-   <form id="myForm" method="post">
+	<% if (login) {          // 로그인 상태일 때의 출력 %>
 
-			<div class="mb-3">
-				<label for="idview" class="form-label">아이디</label> <input
-					type="text" class="form-control" id="idview" name="id"
-					value="<%=member.getId()%>">
-			</div>
-			<div class="mb-3">
-				<label for="emailview" class="form-label">이메일</label> <input
-					type="email" class="form-control" id="emailview" name="email"
-					value="<%=member.getEmail()%>">
-			</div>
-			<div class="mb-3">
-				<label for="nameview" class="form-label">이름</label> <input
-					type="text" class="form-control" id="nameview" name="name"
-					value="<%=member.getName()%>">
-			</div>
-			<button type="submit" class="btn btn-secondary"
-				onclick="setAction('memberUpdate.jsp')">수정</button>
-			<button type="submit" class="btn btn-secondary"
-				onclick="setAction('memberDelete.jsp')">삭제</button>
-		</form>
-  	</figure>
+	<figure style="background-color: #fff; padding-top: 5px;">
+    <div class="container" style="padding-top: 5px">
+        <h1>account</h1>
+    <table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">번호</th>
+      <th scope="col">id</th>
+      <th scope="col">email</th>
+      <th scope="col">이름</th>
+    </tr>
+  </thead>
+  
+  <tbody class="table-group-divider">
+  <%   for(Member member: list) {   %> 
+<tr onclick="submitForm('<%= member.getMemberno() %>');" style="cursor: pointer;">
+  <th scope="row"><%= member.getMemberno() %></th>
+  <td><%= member.getId() %></td>
+  <td><%= member.getEmail() %></td>
+  <td><%= member.getName() %></td>
+
+</tr>
+              <% }%>
+  </tbody>
+<form id="memberForm" action="memberview.jsp" method="post">
+  <input type="hidden" name="memberno" id="memberNoInput">
+</form>
+
 <script>
   function submitForm(memberno) {
     document.getElementById('memberNoInput').value = memberno;
     document.getElementById('memberForm').submit();
   }
 </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> 	
+
+</table>
+<button type="button" class="btn btn-secondary" onclick="location.href='memberForm.jsp';">회원입력</button>
+</div>
+<% } else{%>
+<script>
+alert('접근 권한이 없습니다. 로그인 해주세요!');
+	 location.href = "../login/login_main.jsp";
+	 </script>
+<% }%>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> 
+  	</figure>	
 	<footer>
 		<div class="inner">
 			<div class="upper">

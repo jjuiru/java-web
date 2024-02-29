@@ -21,6 +21,10 @@ public Board(int num, String id, String title, String content, String regtime, i
 	this.memberno= memberno;
 }
 
+public Board(int memberno) {
+	this.memberno = memberno;
+}
+
 public Board(int num, String title, String content) {
 	this.num = num;
 	this.title = title;
@@ -29,6 +33,13 @@ public Board(int num, String title, String content) {
 
 public Board(String id, String title, String content) {
 	this(0,id, title, content, "",0,0); //생성자 호출
+//	this.writer = writer;
+//	this.title = title;
+//	this.content = content;
+}
+
+public Board(String title, String content) {
+	this(0,null, title, content, "",0,0); //생성자 호출
 //	this.writer = writer;
 //	this.title = title;
 //	this.content = content;

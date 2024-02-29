@@ -1,5 +1,5 @@
+<%@page import="dao.MemberDao"%>
 <%@page import="uill.Cookies"%>
-<%@page import="dao.MemberTest"%>
 <%@page import="dto.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -9,7 +9,7 @@
    request.setCharacterEncoding("utf-8");
    String id= request.getParameter("id");
    String email= request.getParameter("email");
-   Member member =MemberTest.getInstance().selectForLogin(id, email);
+   Member member =MemberDao.getInstance().selectForLogin(id, email);
    
 // Cookies cookies = new Cookies(request);여기서는 꼭 객체정보를 사용하지 않아도 Cookies를 사용할 수 있다.
 //static 메소드 사용 but 쿠키 정보를 가져오기 위해서는 사용해야한다.
