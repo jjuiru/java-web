@@ -102,7 +102,7 @@
 <tr style="background-color: #00040c;">
     <th style="background-color: #f8f9fa; display: none;" scope="row"><%= board.getNum() %></th>
     <th style="background-color: #f8f9fa;font-weight: bold; color: #0000ff;  scope="row">공지</th>
-    <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getId() %></td>
+    <td style="background-color: #f8f9fa; font-weight: bold;"><a href="searchAcc.jsp?id=<%= board.getId() %>"><%= board.getId() %></a></td>
     <td style="background-color: #f8f9fa; font-weight: bold;"><a href="view.jsp?num=<%= board.getNum() %>&id=<%= board.getId() %>"><%= board.getTitle() %></a></td>
     <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getRegtime() %></td>
     <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getHits() %></td>
@@ -119,7 +119,7 @@
 <tr>
     <th style= "display: none;" scope="row"><%= normal.getNum() %></th>
     <th scope="row"><%= count++ %></th>
-    <td><%= normal.getId() %></td>
+    <td><a href="searchAcc.jsp?id=<%= normal.getId() %>"><%= normal.getId() %></a></td>
     <td><a href="view.jsp?num=<%= normal.getNum() %>&id=<%= normal.getId() %>"><%= normal.getTitle() %></a></td>
     <td><%= normal.getRegtime() %></td>
     <td><%= normal.getHits() %></td>

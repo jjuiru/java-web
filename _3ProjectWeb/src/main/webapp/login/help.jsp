@@ -53,8 +53,8 @@
     }
 %>    </div>
 	</header>
-	<figure style="background-color: #fff;">
-	
+	<figure style="max-width: 100%; background-color: #fff;display: flex; padding-top: 50px; flex-direction: column; align-items: center; margin-top: 5vw auto;">	
+	<a><h1>준비중입니다.</h1></a>
 	</figure>
 	<section>
 

@@ -43,7 +43,7 @@
 					<li><a href="../login/member_list.jsp">admin page</a></li>		
 				
 				<% } else{%>			
-				<li><a href="mypage.jsp">Mypage</a></li>
+				<li><a href="../login/mypage.jsp">Mypage</a></li>
 				<%}%>
 			</ul>
 <%  
@@ -59,26 +59,24 @@
     }
 %>    </div>
 	</header>
-<figure style="max-width: 100%; background-color: #fff; display: flex; padding: 50px; flex-direction: column; align-items: center; margin: 5vw auto; text-align: center;">
+<figure style="max-width: 800px; background-color: rgba(0, 0, 0, 0.9); color: #ddd; display: flex; padding: 50px; flex-direction: column; align-items: flex-start; margin: 5vw auto; text-align: left; border-radius: 5px; border: none;">
     <div style="font-size: 18px; line-height: 1.6;">
-        <p>이 웹 페이지는 크게 세 가지 기능을 지원합니다.</p>
+        <p style="margin-bottom: 20px;">이 웹 페이지는 크게 세 가지 기능을 지원합니다.</p>
         <p>정보 확인(갤러리, 게시판)</p>
         <p>관리자 기능(계정관리)</p>
         <p>일반 회원의 로그인과 활동 저장</p>
         <br>
         <p><strong>일반 회원의 경우</strong></p>
-        <ul style="list-style-type: none; padding-left: 0;">
+        <ul style="list-style-type: none; padding-left: 0; margin-bottom: 20px;">
             <li>정보 확인에서 회원은 갤러리에서 사진을 구경 할 수 있습니다.</li>
             <li>게시판에 글을 작성해 다른 회원과 소통 할 수 있습니다.</li>
             <li>본인이 작성한 글은 언제든지 삭제 혹은 수정이 가능합니다.</li>
             <li>mypage에서 본인의 계정정보를 수정, 혹은 회원탈퇴를 진행 할 수 있습니다.</li>
         </ul>
-        <br>
         <p><strong>관리자의 경우</strong></p>
-        <ul style="list-style-type: none; padding-left: 0;">
+        <ul style="list-style-type: none; padding-left: 0; margin-bottom: 20px;">
             <li>일반 회원의 모두 확인 할 수 있으며 삭제, 추가 또한 가능합니다.</li>
         </ul>
-        <br>
         <p>갤러리는 모든 방문자가 확인 할 수 있고, 게시판은 로그인 회원만 사용이 가능합니다.</p>
     </div>
 </figure>

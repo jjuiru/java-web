@@ -3,21 +3,21 @@
 <%@page import="dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <%
- String memberId = (String)session.getAttribute("userId");
-    if(memberId==null){%>
-    	<script>
-    	window.onload = function() {
-    	    alert('로그인을 해주세요');   
-    	    location.href = "../login/login_main.jsp";
-    	};
-    	</script>
-    	<%}
+        <%//로그인체크
+    String memberId = (String)session.getAttribute("userId");
+        if(memberId==null){
+        	%>
+        	    <script>
+        	        window.onload = function() {
+        	            alert('잘못된 접근입니다. 로그인이 필요합니다.');
+        	            location.href = "../login/login_main.jsp";
+        	        };
+        	    </script>
+        	<%
+        	    return; // 리디렉션 후에는 더 이상 코드 실행하지 않음
+        	}
  MemberDao dao = MemberDao.getInstance();
  Member member = dao.select(memberId); // selectList() 호출해보기
- 
- 
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,6 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/style.css">
 <script defer src="js/ie.js"></script>
- 
 </head>
 <body>
 	<header>
@@ -63,7 +62,7 @@
 					<li><a href="member_list.jsp">admin page</a></li>		
 				
 				<% } else{%>			
-				<li><a href="mypage.jsp">Mypage</a></li>
+				<li><a href="../login/mypage.jsp">Mypage</a></li>
 				<%}%>
 			</ul>
 <%  

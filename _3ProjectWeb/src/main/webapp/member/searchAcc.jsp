@@ -12,7 +12,7 @@
  boolean login = memberId == null ? false : true;
  BoardDao dao = BoardDao.getInstance();
  List<Board> list = dao.selectList(); // selectList() 호출해보기
- String search = request.getParameter("search");
+ String id = request.getParameter("id");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,10 +112,9 @@
 <!-- 일반 게시물 출력 -->
  
    <% } %>
-<!-- admin 게시물 출력 -->
 <% int count = 1; %>
 <% for (Board normal : list) { 
-    if (!"admin".equals(normal.getId())&& normal.getTitle().contains(search)) { // admin이 아니고 문자열이 포함된 결과물 출력
+    if (normal.getId().equals(id)) { // admin이 아니고 문자열이 포함된 결과물 출력
 %>
 <tr>
     <th style= "display: none;" scope="row"><%= normal.getNum() %></th>
@@ -174,6 +173,3 @@ alert('접근 권한이 없습니다. 로그인 해주세요!');
 	</footer>
   </body>
 </html>
-
-
-

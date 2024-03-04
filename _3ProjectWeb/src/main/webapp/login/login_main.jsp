@@ -88,13 +88,18 @@
 					for="check"> 아이디를 저장합니다. </label>
 			</div>
 			<div>
-			<button style="margin-bottom: 10px; border-radius: 10px;" class="btn btn-dark w-100 py-2" type="submit"
+			<button style="margin-bottom: 10px; border-radius: 10px;" class="btn btn-sm btn-outline-secondary w-100 py-2" type="submit"
 				onclick="location.href='login.jsp';">Sign in</button>
 				</div>
 		</form>
 			<div>
-			<button style= "border-radius: 10px;" class="btn btn-dark w-100 py-2"
+			<button style= "margin-bottom: 10px; border-radius: 10px;" class="btn btn-sm btn-outline-secondary w-100 py-2"
 				onclick="location.href='member_join_form.jsp';">join</button>
+				</div>
+				
+			<div>
+			<button style= "border-radius: 10px;" class="btn btn-sm btn-outline-secondary w-100 py-2"
+				onclick="location.href='../mainPage.jsp';">main</button>
 				</div>
 			<p class="mt-5 mb-3 text-body-secondary">&copy; 2024–2027</p>
 			<%

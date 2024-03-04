@@ -10,8 +10,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/c47106c6a7.js"
 	crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=sHU8Gr_UhCOCtQKYitpn"></script>
 <link rel="stylesheet" href="../css/style.css">
 <script defer src="js/ie.js"></script>
+    <style>
+        #map {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
 </head>
 <body>
 	<header>
@@ -43,7 +50,7 @@
 					<li><a href="../login/member_list.jsp">admin page</a></li>		
 				
 				<% } else{%>			
-				<li><a href="mypage.jsp">Mypage</a></li>
+				<li><a href="../login/mypage.jsp">Mypage</a></li>
 				<%}%>
 			</ul>
 <%  
@@ -60,7 +67,17 @@
 %>    </div>
 	</header>
 	<figure style="max-width: 100%; background-color: #fff;display: flex; padding-top: 50px; flex-direction: column; align-items: center; margin-top: 5vw auto;">	
-<a><h1>준비중입니다.</h1></a>
+
+    <div id="map"></div>
+    <script>
+        var mapOptions = {
+            center: new naver.maps.LatLng(37.3595704, 127.105399),
+            zoom: 10
+        };
+
+        var map = new naver.maps.Map('map', mapOptions);
+    </script>
+
 	</figure>
 	<footer>
 		<div class="inner">

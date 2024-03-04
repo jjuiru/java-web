@@ -43,7 +43,7 @@
 					<li><a href="../login/member_list.jsp">admin page</a></li>		
 				
 				<% } else{%>			
-				<li><a href="mypage.jsp">Mypage</a></li>
+				<li><a href="../login/mypage.jsp">Mypage</a></li>
 				<%}%>
 			</ul>
 <%  
