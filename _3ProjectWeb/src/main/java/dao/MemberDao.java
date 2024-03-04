@@ -75,6 +75,28 @@ public class MemberDao {
 		
 	}
 	
+	public Member selectOne(int memberno) {
+		Member member = null;
+		String sql = "select * from member where memberno = ?";
+		PreparedStatement pstmt;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberno);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				member = new Member(rs.getInt("memberno"), rs.getString("id"), rs.getString("email"),
+						            rs.getString("name"));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return member;
+		
+	}
+	
 	public Member select(String id) {
 		Member member = null;
 		String sql = "select * from member where id = ?";
@@ -96,7 +118,7 @@ public class MemberDao {
 	}
 	
 	public int insert(Member member) {
-		String sql = "insert into member(id, email, name) values (?,?,?)";
+		String sql = "insert into member(memberno, id, email, name) values (SEQ_MEMBER.nextval,?,?,?)";
 	    try ( 
 	        PreparedStatement pstmt = conn.prepareStatement(sql);            
 	    ) {
@@ -129,5 +151,27 @@ public class MemberDao {
 	        e.printStackTrace();
 	    } 
 		return 0;
+	}
+	
+	public void delete(String id, int memberno) {
+	    int result = 0;
+	    int result2 = 0;
+	    String sql1 = "DELETE FROM board WHERE memberno =?";
+	    String sql2 = "DELETE FROM member WHERE id=?";
+	    try {
+	        // Delete from board table
+	        try (PreparedStatement pstmt1 = conn.prepareStatement(sql1)) {
+	            pstmt1.setInt(1, memberno);
+	            result = pstmt1.executeUpdate();
+	        }
+
+	        // Delete from member table
+	        try (PreparedStatement pstmt2 = conn.prepareStatement(sql2)) {
+	            pstmt2.setString(1, id);
+	            result = pstmt2.executeUpdate();
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
 }

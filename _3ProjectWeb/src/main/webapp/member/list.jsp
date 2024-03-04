@@ -56,10 +56,15 @@
     	{          
         // 로그인 상태일 때의 출력 
 %>			
-<li><a href="../minipage/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
+<li><a href="../login/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
 				<li><a href="../login/help.jsp">Help</a></li>
 				<li><a href="../login/logout.jsp">Logout</a></li>
+				<%if("admin".equals((String)session.getAttribute("userId"))){ %>
+					<li><a href="../login/member_list.jsp">admin page</a></li>		
+				
+				<% } else{%>			
 				<li><a href="../login/mypage.jsp">Mypage</a></li>
+				<%}%>
 			</ul>
 <%  
     } else {                       
@@ -83,7 +88,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">번호</th>
+      <th scope="col"></th>
       <th scope="col">작성자</th>
       <th scope="col">제목</th>
       <th scope="col">작성일시</th>
@@ -91,19 +96,51 @@
     </tr>
   </thead>
   <tbody class="table-group-divider">
-     <%   for(Board board: list) {   %>  
-    <tr>
-      <th scope="row"><%=board.getNum()%></th>
-      <td><%=board.getId()%></td>
-      <td><a href="view.jsp?num=<%=board.getNum()%>&id=<%=board.getId()%>"><%=board.getTitle()%></a></td>
-      <td><%=board.getRegtime()%></td>
-      <td><%=board.getHits()%></td>
-    </tr>
-            <% }%>
+<% for (Board board : list) {
+    if ("admin".equals(board.getId())) {
+%>
+<tr style="background-color: #00040c;">
+    <th style="background-color: #f8f9fa; display: none;" scope="row"><%= board.getNum() %></th>
+    <th style="background-color: #f8f9fa;font-weight: bold; color: #0000ff;  scope="row">공지</th>
+    <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getId() %></td>
+    <td style="background-color: #f8f9fa; font-weight: bold;"><a href="view.jsp?num=<%= board.getNum() %>&id=<%= board.getId() %>"><%= board.getTitle() %></a></td>
+    <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getRegtime() %></td>
+    <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getHits() %></td>
+</tr>
+<%System.out.println(board.getId()); } %>
+<!-- 일반 게시물 출력 -->
+ 
+   <% } %>
+<!-- admin 게시물 출력 -->
+<% int count = 1; %>
+<% for (Board normal : list) { 
+    if (!"admin".equals(normal.getId())) { // admin 게시물이 아닌 경우에만 출력
+%>
+<tr>
+    <th style= "display: none;" scope="row"><%= normal.getNum() %></th>
+    <th scope="row"><%= count++ %></th>
+    <td><%= normal.getId() %></td>
+    <td><a href="view.jsp?num=<%= normal.getNum() %>&id=<%= normal.getId() %>"><%= normal.getTitle() %></a></td>
+    <td><%= normal.getRegtime() %></td>
+    <td><%= normal.getHits() %></td>
+</tr>
+<% }%>
+<% }%>
   </tbody>
 </table>
- <button type="button" class="btn btn-dark" onclick="location.href='write.jsp'" >글쓰기</button>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="text-align: center;">
+    <div class="container-fluid">
+        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='write.jsp'" style="float: right;">글쓰기</button>        
+        <form class="d-flex" role="search" action="searchList.jsp">
+            <input class="form-control me-2" type="search" name="search" placeholder="내용검색" aria-label="Search">
+            <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
+        </form>
+    </div>
+</nav> 
+ 
 </div>
+
+
 <% } else{%>
 <script>
 alert('접근 권한이 없습니다. 로그인 해주세요!');

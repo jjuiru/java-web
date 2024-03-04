@@ -68,24 +68,32 @@ header .inner #gnb li a:hover {
 figure {
 	width: 100%;
 	height: calc(100vh - 120px); /*전체 브라우저 높이에서 120px만큼 빼줌*/
-	background: #000;
+	background: transparent; /* 배경색을 투명으로 설정 */	
 	position: relative;
 	overflow: hidden;
 	padding-top: 250px;
 }
 figure video {
-	object-fit: cover; /*영상을 figure안쪽에 꽉 차도록 설정*/
-	width: 100%;
-	height: 100%;
-	opacity: 0.3;
-	position: absolute;
-	top: 0px;
-	left: 0px;
+    object-fit: cover; /* 영상을 figure안쪽에 꽉 차도록 설정 */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
+
+/* 16초까지만 재생 후 반복재생 */
+figure video {
+    animation: playVideo 16s linear infinite;
+}
+
 figure .inner {
 	width: 1180px;
 	margin: 0px auto;
 	position: relative;
+}
+figure .art {
+    background-color: rgba(0, 0, 0, 0.5); /* 검정색 배경에 투명도 추가 */
 }
 figure .inner h1 {
 	font: normal 120px/1 "arial";
@@ -222,3 +230,4 @@ footer .inner .lower p {
 	font: 12px/1 "arial";
 	color: #777;
 }
+

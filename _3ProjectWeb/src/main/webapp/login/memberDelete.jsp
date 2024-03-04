@@ -1,30 +1,29 @@
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
+
+<%@page import="dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-     <% request.setCharacterEncoding("utf-8");
-//post 방식일때 한글이 깨질까봐
-//String driver="oracle.jdbc.driver.OracleDriver";
-Class.forName("oracle.jdbc.driver.OracleDriver");
-String url="jdbc:oracle:thin:@localhost:1521:xe";
-Connection conn = DriverManager.getConnection(url, "scott", "tiger");
-String sql = "delete from member where memberno=?";
-PreparedStatement pstmt = conn.prepareStatement(sql);
-pstmt.setString(1, request.getParameter("memberno"));
-
-
-int result = pstmt.executeUpdate();
+    pageEncoding="UTF-8"%>   
+ <%
+String memberId = (String)session.getAttribute("userId"); 
+ int memberno = Integer.parseInt(request.getParameter("memberno"));
+ String id = request.getParameter("id");
+if(memberId==null){
+	response.sendRedirect("../login/login_main.jsp");
+}
+MemberDao dao = MemberDao.getInstance();
+dao.delete(id,memberno);
 %>
-<% response.sendRedirect("list.jsp"); %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+         <script>
+             alert('삭제가 완료되었습니다.');
+             location.href="member.view.jsp";
+         </script>   
+ <%   
+ if("admin".equals((String)session.getAttribute("userId"))){ 
+	response.sendRedirect("member_list.jsp"); 
+}else{ 
+session.removeAttribute("userId");
+session.removeAttribute("userName");
 
-</body>
-</html>
+
+
+response.sendRedirect("../mainPage.jsp"); 
+}%>

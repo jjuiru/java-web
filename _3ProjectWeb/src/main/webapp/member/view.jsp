@@ -85,7 +85,12 @@ window.onload = function() {
 <li><a href="../minipage/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
 				<li><a href="../login/help.jsp">Help</a></li>
 				<li><a href="../login/logout.jsp">Logout</a></li>
-				<li><a href="../minipage/mypage.jsp">Mypage</a></li>
+				<%if("admin".equals((String)session.getAttribute("userId"))){ %>
+					<li><a href="../login/member_list.jsp">admin page</a></li>		
+				
+				<% } else{%>			
+				<li><a href="../login/mypage.jsp">Mypage</a></li>
+				<%}%>
 			</ul>
 <%  
     } else {                       
@@ -136,13 +141,13 @@ window.onload = function() {
 
 <% if(id.equals(memberId)){%>
 
-<input type="button" value="목록보기" class="btn btn-dark" onclick="location.href='list.jsp'">
-<input type="button" class="btn btn-dark" value="수정"
+<input type="button" value="목록보기" class="btn btn-sm btn-outline-secondary" onclick="location.href='list.jsp'">
+<input type="button" class="btn btn-sm btn-outline-secondary" value="수정"
        onclick="location.href='write.jsp?id=<%=id%>&num=<%=num%>'">
-<input type="button" class="btn btn-dark" value="삭제"
+<input type="button" class="btn btn-sm btn-outline-secondary" value="삭제"
        onclick="location.href='delete.jsp?num=<%=num%>'">
    <%  }else{  %>
-   <input type="button" value="목록보기" class="btn btn-dark" onclick="location.href='list.jsp'">
+   <input type="button" value="목록보기" class="btn btn-sm btn-outline-secondary" onclick="location.href='list.jsp'">
    <%  }%>
   </div> 
 <br>

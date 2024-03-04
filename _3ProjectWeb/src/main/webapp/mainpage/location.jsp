@@ -5,8 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>모하지지역</title>
+<title>기업형 웹 페이지</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/c47106c6a7.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../css/style.css">
@@ -19,13 +20,13 @@
 			<h1>
 				<a href="../mainPage.jsp">MOHAJIGALLERY</a>
 			</h1>
-					<ul id="gnb">
+			<ul id="gnb">
 				<!-- gnb 메뉴바 >기능이 있는 작은 메뉴들 -->
-				<li><a href="intro.jsp">INTRO</a></li>
-				<li><a href="gallery.jsp">GALLERY</a></li>
-				<li><a href="youtube.jsp">YOUTUBE</a></li>
+				<li><a href="../mainpage/intro.jsp">INTRO</a></li>
+				<li><a href="../mainpage/gallery.jsp">GALLERY</a></li>
+				<li><a href="../mainpage/youtube.jsp">YOUTUBE</a></li>
 				<li><a href="../member/list.jsp">COMMUNITY</a></li>
-				<li><a href="location.jsp">LOCATION</a></li>
+				<li><a href="../mainpage/location.jsp">LOCATION</a></li>
 			</ul>
 			<ul class="util">
 <%
@@ -35,37 +36,31 @@
     	{          
         // 로그인 상태일 때의 출력 
 %>			
-<li><a href="../minipage/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
-				<li><a href="help.jsp">Help</a></li>
-				<li><a href="../login/logout.jsp">Logout</a></li>
+<li><a href="mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
+				<li><a href="../minipage/help.jsp">Help</a></li>
+				<li><a href="logout.jsp">Logout</a></li>
+				<%if("admin".equals((String)session.getAttribute("userId"))){ %>
+					<li><a href="member_list.jsp">admin page</a></li>		
+				
+				<% } else{%>			
 				<li><a href="mypage.jsp">Mypage</a></li>
+				<%}%>
 			</ul>
 <%  
     } else {                       
         // 로그인되지 않은 상태일 때의 출력           				
 %>
-                <li><a href="help.jsp">Help</a></li>
-				<li><a href="../login/login_main.jsp">Login</a></li>
-				<li><a href="../login/member_join_form.jsp">join</a></li>
+                <li><a href="../minipage/help.jsp">Help</a></li>
+				<li><a href="login_main.jsp">Login</a></li>
+				<li><a href="member_join_form.jsp">join</a></li>
 			</ul>		
 		<!-- 메뉴의 상단영역 -->
 		<%
     }
-%>     </div>
+%>    </div>
 	</header>
-	<figure style="background-color: #FFFFFF;">
-		<video src="img/visual.mp4" autoplay muted loop></video>
-		<div class="inner">
-			<h1>MOHAJIGALLERY</h1>
-			<p>
-				Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
-				Tempora quidem doloribus quis aliquid, quaerat quibusdam aspernatur
-				maxime quod blanditiis amet eaque consequatur similique in cum fuga
-				ex illo expedita provident!
-			</p>
-			<a href="#">view intro</a>
-		</div>
-		<!-- 메인으로 보여질 공간  -->
+	<figure style="max-width: 100%; background-color: #fff;display: flex; padding-top: 50px; flex-direction: column; align-items: center; margin-top: 5vw auto;">	
+<a><h1>준비중입니다.</h1></a>
 	</figure>
 	<footer>
 		<div class="inner">
@@ -88,6 +83,8 @@
 			</div>
 		</div>
 		<!-- 기업정보 -->
+	</main>
 	</footer>
+
 </body>
 </html>

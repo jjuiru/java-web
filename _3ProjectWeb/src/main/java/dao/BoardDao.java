@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import dto.ArticlePage;
 import dto.Board;
 
 public class BoardDao { // 싱글턴 클래스
@@ -38,12 +40,36 @@ public class BoardDao { // 싱글턴 클래스
 
 	// Board list에 jsp에서 호출한 값의 정보를 저장하여 보관, 즉 회원정보를 가지고 있다. 회원정보가 필요한 곳은 list를 호출하여
 	// 사용
+	
+	public int selectCount() {
+		String sql="select count(*) from board";
+		PreparedStatement pstmt;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			ResultSet rs= pstmt.executeQuery();
+			if(rs.next()) {
+				int total= rs.getInt("total");
+				return total;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public ArticlePage paging() {
+		int total=selectCount();
+		List<Board> list=selectList();						
+		ArticlePage article = new ArticlePage(total, 2, 5, list);		
+		return article;
+		
+	}
 	// -----------------------------------
 	public ArrayList<Board> selectList() {
 		ArrayList<Board> list = new ArrayList<Board>();
-		// List는 인터페이스 타입으로 다형서을 사용하기 위해서 사용
-		String sql = "SELECT d.num, m.id, d.title, d.content, d.regtime, d.hits, d.memberno " +
-                "FROM member m JOIN board d ON m.memberno = d.memberno ORDER BY d.num";
+		// List는 인터페이스 타입으로 다형성을 사용하기 위해서 사용
+		String sql = "SELECT d.num, m.id, d.title, d.content, TO_CHAR(d.regtime, 'YYYY-MM-DD') as regtime, d.hits, d.memberno " +
+                "FROM member m JOIN board d ON m.memberno = d.memberno";
 		PreparedStatement pstmt;
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -67,7 +93,7 @@ public class BoardDao { // 싱글턴 클래스
 //		String sql = "select * from board where num=" + num;
 		String sql = "select d.num, m.id, d.title, d.content , d.regtime, d.hits, d.memberno"
 				+ " from member m, board d"
-				+ " where m.memberno=d.memberno and id=?"; // Prepared전용
+				+ " where m.memberno=d.memberno and m.id=?"; // Prepared전용
 		PreparedStatement pstmt;
 		try {
 			pstmt = conn.prepareStatement(sql);

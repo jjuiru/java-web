@@ -92,7 +92,12 @@ window.onload = function() {
 %>			
 				<li><a href="../minipage/help.jsp">Help</a></li>
 				<li><a href="logout.jsp">Logout</a></li>
-				<li><a href="../minipage/mypage.jsp">Mypage</a></li>
+				<%if("admin".equals((String)session.getAttribute("userId"))){ %>
+					<li><a href="../login/member_list.jsp">admin page</a></li>		
+				
+				<% } else{%>			
+				<li><a href="../login/mypage.jsp">Mypage</a></li>
+				<%}%>
 			</ul>
 <%  
     } else {                       

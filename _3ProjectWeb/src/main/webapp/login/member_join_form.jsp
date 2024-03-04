@@ -36,10 +36,15 @@
     	{          
         // 로그인 상태일 때의 출력 
 %>			
-<li><a href="../minipage/mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
+<li><a href="mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
 				<li><a href="../minipage/help.jsp">Help</a></li>
 				<li><a href="logout.jsp">Logout</a></li>
-				<li><a href="../minipage/mypage.jsp">Mypage</a></li>
+				<%if("admin".equals((String)session.getAttribute("userId"))){ %>
+					<li><a href="member_list.jsp">admin page</a></li>		
+				
+				<% } else{%>			
+				<li><a href="mypage.jsp">Mypage</a></li>
+				<%}%>
 			</ul>
 <%  
     } else {                       
@@ -73,7 +78,7 @@
           <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name" name="name">
        </div>
        <div>
-			<button style= "border-radius: 10px;" class="btn btn-dark w-100 py-2"
+			<button style= "border-radius: 10px;" class="btn btn-sm btn-outline-secondary"
 				onclick="location.href='member_join_form.jsp';">입력</button>
 				</div>
 		</form>

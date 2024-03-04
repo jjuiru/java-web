@@ -16,6 +16,8 @@
     	<%}
  MemberDao dao = MemberDao.getInstance();
  Member member = dao.select(memberId); // selectList() 호출해보기
+ 
+ 
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +59,12 @@
 <li><a href="mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
 				<li><a href="help.jsp">Help</a></li>
 				<li><a href="logout.jsp">Logout</a></li>
+				<%if("admin".equals((String)session.getAttribute("userId"))){ %>
+					<li><a href="member_list.jsp">admin page</a></li>		
+				
+				<% } else{%>			
 				<li><a href="mypage.jsp">Mypage</a></li>
+				<%}%>
 			</ul>
 <%  
     } else {                       
@@ -79,31 +86,46 @@
    <form id="myForm" method="post">
 
 			<div class="mb-3">
-				<label for="idview" class="form-label">아이디</label> <input
-					type="text" class="form-control" id="idview" name="id"
+				<label for="id" class="form-label">아이디</label> <input
+					type="text" class="form-control" id="id" name="id" readonly
 					value="<%=member.getId()%>">
 			</div>
 			<div class="mb-3">
-				<label for="emailview" class="form-label">이메일</label> <input
-					type="email" class="form-control" id="emailview" name="email"
+				<label for="emai" class="form-label">이메일</label> <input
+					type="email" class="form-control" id="email" name="email"
 					value="<%=member.getEmail()%>">
 			</div>
 			<div class="mb-3">
-				<label for="nameview" class="form-label">이름</label> <input
-					type="text" class="form-control" id="nameview" name="name"
+				<label for="name" class="form-label">이름</label> <input
+					type="text" class="form-control" id="name" name="name"
 					value="<%=member.getName()%>">
 			</div>
-			<button type="submit" class="btn btn-secondary"
+		<button type="submit" class="btn btn-sm btn-outline-secondary"
 				onclick="setAction('memberUpdate.jsp')">수정</button>
-			<button type="submit" class="btn btn-secondary"
-				onclick="setAction('memberDelete.jsp')">삭제</button>
+				<button type="button" class="btn btn-sm btn-outline-secondary" 
+				onclick="confirmDelete(<%=member.getMemberno()%>)">회원탈퇴</button>
+				
+				<div class="mb-3" style="display: none;">
+				<label for="memberno" class="form-label">번호</label> <input
+					type="text" class="form-control" id="memberno" name="memberno" readonly
+					value="<%=member.getMemberno()%>">
 		</form>
-  	</figure>
-<script>
-  function submitForm(memberno) {
-    document.getElementById('memberNoInput').value = memberno;
-    document.getElementById('memberForm').submit();
-  }
+		<script>
+			function setAction(action) {
+				document.getElementById("myForm").action = action;
+			}
+			function confirmDelete(memberno) {
+			    var confirmDelete = confirm("계정 삭제시 모든 게시글이 지워집니다. 정말로 삭제하시겠습니까?");
+			    if (confirmDelete) {
+		            var formData = new FormData(document.getElementById("myForm"));
+		            // URL 쿼리 문자열 생성
+		            var queryString = new URLSearchParams(formData).toString();
+		            // memberDelete.jsp로 이동하면서 데이터 전송
+		            location.href = "memberDelete.jsp?" + queryString;
+			    } else {
+			        
+			    }
+			}
 </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> 	
 	<footer>

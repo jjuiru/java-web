@@ -29,7 +29,6 @@
              history.back();
          </script>
  <%        
-         return;
      }
  
      BoardDao dao = BoardDao.getInstance();

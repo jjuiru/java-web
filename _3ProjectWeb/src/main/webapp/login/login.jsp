@@ -6,6 +6,18 @@
 <%@ page import="java.sql.*" %>   
 
 <%
+//로그인체크
+String memberId = (String)session.getAttribute("userId");
+if(memberId==null){
+%>
+<script>
+window.onload = function() {
+ alert('로그인을 해주세요');   
+ location.href = "../login/login_main.jsp";
+};
+</script>
+<%} %>
+<%
    request.setCharacterEncoding("utf-8");
    String id= request.getParameter("id");
    String email= request.getParameter("email");

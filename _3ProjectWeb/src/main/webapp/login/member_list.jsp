@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%
+ <%  
  String memberId = (String)session.getAttribute("userId");
  boolean login = memberId == null ? false : true;
  MemberDao dao = MemberDao.getInstance();
@@ -18,10 +18,10 @@
 <title>mypage</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <script src="https://kit.fontawesome.com/c47106c6a7.js"
-	crossorigin="anonymous"></script>
+crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/style.css">
 <script defer src="js/ie.js"></script>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
 	<header>
@@ -49,7 +49,12 @@
 <li><a href="mypage.jsp"><%=(String) session.getAttribute("userName")%>님 로그인</a></li>
 				<li><a href="help.jsp">Help</a></li>
 				<li><a href="logout.jsp">Logout</a></li>
+				<%if("admin".equals((String)session.getAttribute("userId"))){ %>
+					<li><a href="member_list.jsp">admin page</a></li>		
+				
+				<% } else{%>			
 				<li><a href="mypage.jsp">Mypage</a></li>
+				<%}%>
 			</ul>
 <%  
     } else {                       
@@ -103,7 +108,7 @@
 </script>
 
 </table>
-<button type="button" class="btn btn-secondary" onclick="location.href='memberForm.jsp';">회원입력</button>
+<button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='memberForm.jsp';">회원입력</button>
 </div>
 <% } else{%>
 <script>
