@@ -10,6 +10,6 @@ if (check != null && check.equals("on")) {
 	// 쿠키글 저장(쿠키를 생성 (1시간 쿠키가 살아있을 수 있도록 설정 ));
 } else {
 	response.addCookie(Cookies.createCookie("prpcheck", "", "/", 0));
-
-} response.sendRedirect("mainPage.jsp");  
+	
+} response.sendRedirect("mainPage.jsp?no=no"); 
  %>

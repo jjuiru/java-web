@@ -16,6 +16,9 @@
 </head>
 <body>
     <%
+    String no= request.getParameter("no");
+    System.out.print(no);
+    
     String check= null;
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
@@ -29,20 +32,26 @@
 //    String check = request.getParameter("popcheck");
     if (check != null && check.equals("on")) {
 
-    } else {%>
-    <div class="popup" id="popup" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ccc; padding: 20px; background-color: rgba(255, 255, 255, 0.8); z-index: 1000; max-width: 80%; max-height: 90vh; overflow-y: auto;">
-    <!-- 이미지 팝업 내용 -->
-    <div style="max-width: 100%; max-height: 70%;">
-        <img src="img/main.jpg" alt="main 콘텐츠 이미지" style="max-width: 100%; max-height: 100%; width: auto; height: auto;">
-    </div>
-        <div class="checkbox-btn" style="display: flex; justify-content: space-between; align-items: center;">
-        <form action="cookieMake.jsp">
-            <label><input type="checkbox" id="popcheck" name="popcheck">오늘은 더 이상 보지 않기</label>
-            <button class="btn btn-sm btn-outline-secondary close-btn" onclick="cookieMake.jsp" style="margin-top: 10px;">닫기</button>
-            </form>
-        </div>
-</div>
-   <% } 
+    } else {
+    
+    	if (no != null && no.equals("no")) {
+    	    
+    } else{
+    	%>
+    	<div class="popup" id="popup" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ccc; padding: 20px; background-color: rgba(255, 255, 255, 0.8); z-index: 1000; max-width: 80%; max-height: 90vh; overflow-y: auto;">
+    	    <!-- 이미지 팝업 내용 -->
+    	    <div style="max-width: 100%; max-height: 70%;">
+    	        <img src="img/main.jpg" alt="main 콘텐츠 이미지" style="max-width: 100%; max-height: 100%; width: auto; height: auto;">
+    	    </div>
+    	    <div class="checkbox-btn" style="display: flex; justify-content: space-between; align-items: center; float: right;">
+    	        <form action="cookieMake.jsp">
+    	            <label><input type="checkbox" id="popcheck" name="popcheck">오늘은 더 이상 보지 않기</label>
+    	            <button class="btn btn-sm btn-outline-secondary close-btn" onclick="cookieMake.jsp" style="margin-top: 10px; float: right;">닫기</button>
+    	        </form>
+    	    </div>
+    	</div> 	
+   <%    }   	
+    } 
     %>
 	<header>
 		<div class="inner">
