@@ -79,53 +79,75 @@
 %>    </div>
 
 	</header>	
-	<figure style="max-width: 100%; background-color: #fff;display: flex; padding-top: 50px; flex-direction: column; align-items: center; margin-top: 5vw auto;">
-        <div><h1>account</h1></div>
-        <br>
-   <form id="myForm" method="post">
+<figure style="max-width: 100%; background-color: #fff;display: flex; padding-top: 50px; flex-direction: column; align-items: center; margin-top: 5vw auto;">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Account</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">MyBoard</button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Like</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+            <div><h1>account</h1></div>
+            <br>
+            <form id="myForm" method="post">
+                <div class="mb-3">
+                    <label for="id" class="form-label">아이디</label> <input
+                        type="text" class="form-control" id="id" name="id" readonly
+                        value="<%=member.getId()%>">
+                </div>
+                <div class="mb-3">
+                    <label for="emai" class="form-label">이메일</label> <input
+                        type="email" class="form-control" id="email" name="email"
+                        value="<%=member.getEmail()%>">
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">이름</label> <input
+                        type="text" class="form-control" id="name" name="name"
+                        value="<%=member.getName()%>">
+                </div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary"
+                        onclick="setAction('memberUpdate.jsp')">수정</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" 
+                        onclick="confirmDelete(<%=member.getMemberno()%>)">회원탈퇴</button>
 
-			<div class="mb-3">
-				<label for="id" class="form-label">아이디</label> <input
-					type="text" class="form-control" id="id" name="id" readonly
-					value="<%=member.getId()%>">
-			</div>
-			<div class="mb-3">
-				<label for="emai" class="form-label">이메일</label> <input
-					type="email" class="form-control" id="email" name="email"
-					value="<%=member.getEmail()%>">
-			</div>
-			<div class="mb-3">
-				<label for="name" class="form-label">이름</label> <input
-					type="text" class="form-control" id="name" name="name"
-					value="<%=member.getName()%>">
-			</div>
-		<button type="submit" class="btn btn-sm btn-outline-secondary"
-				onclick="setAction('memberUpdate.jsp')">수정</button>
-				<button type="button" class="btn btn-sm btn-outline-secondary" 
-				onclick="confirmDelete(<%=member.getMemberno()%>)">회원탈퇴</button>
-				
-				<div class="mb-3" style="display: none;">
-				<label for="memberno" class="form-label">번호</label> <input
-					type="text" class="form-control" id="memberno" name="memberno" readonly
-					value="<%=member.getMemberno()%>">
-		</form>
-		<script>
-			function setAction(action) {
-				document.getElementById("myForm").action = action;
-			}
-			function confirmDelete(memberno) {
-			    var confirmDelete = confirm("계정 삭제시 모든 게시글이 지워집니다. 정말로 삭제하시겠습니까?");
-			    if (confirmDelete) {
-		            var formData = new FormData(document.getElementById("myForm"));
-		            // URL 쿼리 문자열 생성
-		            var queryString = new URLSearchParams(formData).toString();
-		            // memberDelete.jsp로 이동하면서 데이터 전송
-		            location.href = "memberDelete.jsp?" + queryString;
-			    } else {
-			        
-			    }
-			}
+                <div class="mb-3" style="display: none;">
+                    <label for="memberno" class="form-label">번호</label> <input
+                        type="text" class="form-control" id="memberno" name="memberno" readonly
+                        value="<%=member.getMemberno()%>">
+            </form>
+            <script>
+                function setAction(action) {
+                    document.getElementById("myForm").action = action;
+                }
+                function confirmDelete(memberno) {
+                    var confirmDelete = confirm("계정 삭제시 모든 게시글이 지워집니다. 정말로 삭제하시겠습니까?");
+                    if (confirmDelete) {
+                        var formData = new FormData(document.getElementById("myForm"));
+                        // URL 쿼리 문자열 생성
+                        var queryString = new URLSearchParams(formData).toString();
+                        // memberDelete.jsp로 이동하면서 데이터 전송
+                        location.href = "memberDelete.jsp?" + queryString;
+                    } else {
+
+                    }
+                }
+            </script>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+<script>
+    function goToSearchAcc() {
+        window.location.href = "searchAcc.jsp";
+    }
 </script>
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+            <div><h1>Like</h1></div>
+            <p>This is the content of Like tab.</p>
+        </div>
+    </div>
+</figure>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> 	
 	<footer>
 		<div class="inner">

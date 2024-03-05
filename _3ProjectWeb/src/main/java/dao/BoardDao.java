@@ -93,11 +93,12 @@ public class BoardDao { // 싱글턴 클래스
 //		String sql = "select * from board where num=" + num;
 		String sql = "select d.num, m.id, d.title, d.content , d.regtime, d.hits, d.memberno"
 				+ " from member m, board d"
-				+ " where m.memberno=d.memberno and m.id=?"; // Prepared전용
+				+ " where m.memberno=d.memberno and m.id=? and d.num=?"; // Prepared전용
 		PreparedStatement pstmt;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id); // Prepared전용
+			pstmt.setInt(2, num); // Prepared전용
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {

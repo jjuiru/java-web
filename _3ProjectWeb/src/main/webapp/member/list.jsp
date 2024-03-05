@@ -107,9 +107,8 @@
     <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getRegtime() %></td>
     <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getHits() %></td>
 </tr>
-<%System.out.println(board.getId()); } %>
+<% System.out.println(board.getNum()); } %>
 <!-- 일반 게시물 출력 -->
- 
    <% } %>
 <!-- admin 게시물 출력 -->
 <% int count = 1; %>
