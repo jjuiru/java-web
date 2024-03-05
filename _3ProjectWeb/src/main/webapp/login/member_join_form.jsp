@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>기업형 웹 페이지</title>
+<title>모하지갤러리</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/c47106c6a7.js"
@@ -63,7 +63,7 @@
 		<form action="member_join.jsp" method="post">	
 		<div><h1>join</h1></div>
 			<br>
-		<div class="mb-3">
+		<div class="mb-3" style=>
           <label for="exampleFormControlInput1" class="form-label">아이디</label>
           <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id" name="id">
        </div>

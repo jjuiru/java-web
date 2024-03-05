@@ -127,7 +127,7 @@
 						<img src="img/KakaoTalk_20240304_015245193_17.jpg" alt="1번째 콘텐츠 이미지">
 					</div>
 					<h2>
-						<a href="#">Lorem ipsum dolor sit.</a>
+						<a href="https://groundseesaw.co.kr/">groundseesaw</a>
 						<h2>
 							<p>a amet, consectetur adipisicing elit. Ratione, laudantium.</p>
 				</article>
@@ -136,7 +136,7 @@
 						<img src="img/KakaoTalk_20240304_015245193_18.jpg" alt="2번째 콘텐츠 이미지">
 					</div>
 					<h2>
-						<a href="#">Lorem ipsum dolor sit.</a>
+						<a href="https://groundseesaw.co.kr/">Lorem ipsum dolor sit.</a>
 						<h2>
 							<p>a amet, consectetur adipisicing elit. Ratione, laudantium.</p>
 				</article>
@@ -145,7 +145,7 @@
 						<img src="img/KakaoTalk_20240304_015245193_20.jpg" alt="3번째 콘텐츠 이미지">
 					</div>
 					<h2>
-						<a href="#">Lorem ipsum dolor sit.</a>
+						<a href="https://groundseesaw.co.kr/">Lorem ipsum dolor sit.</a>
 						<h2>
 							<p>a amet, consectetur adipisicing elit. Ratione, laudantium.</p>
 				</article>
@@ -154,7 +154,7 @@
 						<img src="img/KakaoTalk_20240304_015245193_26.jpg" alt="4번째 콘텐츠 이미지">
 					</div>
 					<h2>
-						<a href="#">Lorem ipsum dolor sit.</a>
+						<a href="https://groundseesaw.co.kr/">Lorem ipsum dolor sit.</a>
 						<h2>
 							<p>a amet, consectetur adipisicing elit. Ratione, laudantium.</p>
 				</article>

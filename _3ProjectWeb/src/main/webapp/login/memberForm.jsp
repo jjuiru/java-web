@@ -20,7 +20,7 @@ window.onload = function() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>mypage</title>
+<title>모하지갤러리</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <script src="https://kit.fontawesome.com/c47106c6a7.js"
 crossorigin="anonymous"></script>

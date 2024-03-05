@@ -1,5 +1,9 @@
 package com.mohaji;
 
-public class Dto {
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
+public class Dto {
+ private String a;
+ 
 }
