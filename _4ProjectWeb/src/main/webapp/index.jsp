@@ -17,18 +17,12 @@
 <body>
 
 	<header>
-	<section>
-	<article class="f">
-	<img src="img/f.png" class="f"/>
-	</article>
 		<h1>DECODE LAB</h1>
 		<ul>
 			<li><a href="#"><i class="fab fa-twitter-square"></i> <span>Twitter</span></a></li>
 			<li><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
 			<li><a href="#"><i class="fas fa-envelope"></i> <span>E-mail</span></a></li>
 		</ul>
-		
-		</section>
 	</header>
 
 	<main>

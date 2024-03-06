@@ -28,18 +28,6 @@ header {
 	transition: 0.5s;
 }
 
-header section {
-	width: 400px;
-	height: 100%;
-}
-
-section .f {
-	position: inherit;
-	width: 100%;
-	height: 100%;
-
-}
-
 header h1 {
 	font: bold 50px/1 "orbitron";
 	color: #fff;

@@ -97,9 +97,13 @@
     </tr>
   </thead>
   <tbody class="table-group-divider">
-<% for (Board board : list) {
+<% int count1 = 0; 
+   for (Board board : list) {
     if ("admin".equals(board.getId())) {
-%>
+    	
+        if (count1 >= 3) {
+            break; // 3개를 출력했으면 루프를 종료합니다.
+             } %>
 <tr style="background-color: #00040c;">
     <th style="background-color: #f8f9fa; display: none;" scope="row"><%= board.getNum() %></th>
     <th style="background-color: #f8f9fa;font-weight: bold; color: #0000ff;  scope="row">공지</th>
@@ -108,9 +112,10 @@
     <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getRegtime() %></td>
     <td style="background-color: #f8f9fa; font-weight: bold;"><%= board.getHits() %></td>
 </tr>
-<%System.out.println(board.getId()); } %>
+<% 
+count1++;
+System.out.println(board.getNum()); } %>
 <!-- 일반 게시물 출력 -->
- 
    <% } %>
 <% int count = 1; %>
 <% for (Board normal : list) { 

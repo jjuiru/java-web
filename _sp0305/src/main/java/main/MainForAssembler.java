@@ -16,14 +16,17 @@ public class MainForAssembler {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		// BufferedReader는 Java에서 입력 스트림으로부터 데이터를 읽는 데 사용되는 클래스이다. 
+		//system.in으로 키보드로 받아온 바이트 스트림을 inputStrieamReader를 통해 문자 스트림으로 변환 변환된 문자를 래핑해서 읽어온다.
 		while (true) {
 			System.out.println("명령어를 입력하세요");
+			//리더 값을 불러와 exit일때 종료한다.
 			String command = reader.readLine();
 			if (command.equalsIgnoreCase("exit")) {
 				System.out.println("종료합니다");
 				break;
 			}
-
+			//리더 값을 불러와 new일때 
 			if (command.startsWith("new")) {
 				processNewCommand(command.split(" "));
 				continue;
@@ -50,7 +53,7 @@ public class MainForAssembler {
 		req.setEmail(arg[1]);
 		req.setName(arg[2]);
 		req.setPassword(arg[3]);
-		req.setConfrmPassword(arg[4]);
+		req.setConfirmPassword(arg[4]);
 		
 		if(!req.isPasswordEqualToConfrmPassword()) {
 			System.out.println("암호와 확인이 일치하지않습니다.");
