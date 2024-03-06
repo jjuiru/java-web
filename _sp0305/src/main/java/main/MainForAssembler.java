@@ -26,9 +26,10 @@ public class MainForAssembler {
 				System.out.println("종료합니다");
 				break;
 			}
-			//리더 값을 불러와 new일때 
+			//리더 값을 불러와 사용자가 입력한 문자가 new 로 시작하면 실행 
 			if (command.startsWith("new")) {
 				processNewCommand(command.split(" "));
+				//사용자가 입력한 명령어를 ""공백 기준으로 분리 
 				continue;
 			} else if (command.startsWith("change")) {
 				processChangeCommand(command.split(" "));
@@ -39,9 +40,10 @@ public class MainForAssembler {
 	}
 
 	private static Assembler assembler = new Assembler();
-	//static으로 바로 사용가능하다.
+	//static으로 바로 사용가능하다. assembler를 호출해서 객체를 생성해서 각 서비스 메소드와 dao에 주입했다.
 
 	private static void processNewCommand(String[]arg) {
+		// 문자열이 new포함 5개의배열로 저장되지 않았다면 메뉴얼을 출력해준다.
 		if(arg.length!=5) {
 			printHelp();
 			return;

@@ -66,9 +66,11 @@ public class BoardController extends HttpServlet {
             String writer  = request.getParameter("writer" );
             String title   = request.getParameter("title"  );
             String content = request.getParameter("content");
+            String num = request.getParameter("memberno");
+            int memberno=Integer.parseInt(num);
 
             try {
-                new BoardService().writeMsg(writer, title, content);
+                new BoardService().writeMsg(writer, title, content, memberno);
                 view = "redirect:list";
 
             } catch(Exception e) {
@@ -117,6 +119,8 @@ public class BoardController extends HttpServlet {
         // view에 담긴 문자열에 따라 포워딩 또는 리다이렉팅 startsWith 은 참거짓 판별
         if (view.startsWith("redirect:")) {
             response.sendRedirect(view.substring(9));
+            //sendRedirect 웹 페이지에서만가능하다. 핸들러에서는 적용 
+            //9번째 문자열을 잘라서 포워딩한다.
         } else {
             request.getRequestDispatcher(view).forward(request, response);
         }

@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html >
 <html>
 <head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title> vertical-layout </title>	
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="css/style.css" />
-	<script src="https://kit.fontawesome.com/c47106c6a7.js"></script>​
-	<script src="js/isotope.pkgd.min.js"></script>
-    <script defer src="js/main.js"></script>
-	
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>vertical-layout</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://kit.fontawesome.com/c47106c6a7.js"></script>
+​
+<script src="js/isotope.pkgd.min.js"></script>
+<script defer src="js/main.js"></script>
+
 </head>
 <body>
 
@@ -20,9 +21,20 @@
 		<h1>DECODE LAB</h1>
 		<ul>
 			<li><a href="#"><i class="fab fa-twitter-square"></i> <span>Twitter</span></a></li>
-			<li><a href="#"><i class="fab fa-facebook"></i> <span>Facebook</span></a></li>
+			<li><a href="#"><i class="fab fa-facebook"></i> <span>&nbsp;Facebook</span></a></li>
 			<li><a href="#"><i class="fas fa-envelope"></i> <span>E-mail</span></a></li>
 		</ul>
+				<div class="header-background"></div>
+		<div class="article-container">
+			<article>
+				<!-- Header에 표시될 이미지 -->
+				<img src="img/f.png" alt="Header Image">
+				<img src="img/f.png" alt="Header Image">
+				<img src="img/f.png" alt="Header Image">
+				<img src="img/f.png" alt="Header Image">
+				<img src="img/f.png" alt="Header Image">
+			</article>
+		</div>
 	</header>
 
 	<main>

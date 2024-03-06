@@ -1,6 +1,6 @@
+<%@page import="dao.MemberDao"%>
 <%@page import="mvjsp.board.model.Member"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="mvjsp.board.dao.MemberDao"%>
 <%@page import="mvjsp.jdbc.connection.ConnectionProvider"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
